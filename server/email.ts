@@ -19,7 +19,10 @@ export async function sendContactEmail(params: SendContactEmailParams): Promise<
   const { name, email, phone, message } = params;
   
   const fromEmail = process.env.SES_FROM_EMAIL || "noreply@kenco.nz";
-  const toEmail = process.env.SES_TO_EMAIL || "web@kenco.nz";
+  const toEmails = [
+    process.env.SES_TO_EMAIL || "web@kenco.nz",
+    "peter.carikas@kenco.nz"
+  ];
 
   const emailBody = `
 New Contact Form Submission
@@ -38,7 +41,7 @@ This email was sent from the Kenco website contact form.
   const command = new SendEmailCommand({
     Source: fromEmail,
     Destination: {
-      ToAddresses: [toEmail],
+      ToAddresses: toEmails,
     },
     Message: {
       Subject: {
