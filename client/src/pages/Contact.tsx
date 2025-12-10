@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,17 @@ export default function Contact() {
     website: "" // Honeypot field
   });
   const [submittedAt, setSubmittedAt] = useState<number | null>(null);
+
+  const submitMutation = trpc.contact.submit.useMutation({
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setFormData({ name: "", email: "", phone: "", message: "", website: "" });
+      sessionStorage.removeItem('formStartTime');
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to send message. Please try again.");
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,9 +56,14 @@ export default function Contact() {
     }
     
     setSubmittedAt(now);
-    toast.success("Thank you for your message! We'll be in touch soon.");
-    setFormData({ name: "", email: "", phone: "", message: "", website: "" });
-    sessionStorage.removeItem('formStartTime');
+    
+    // Submit via tRPC
+    submitMutation.mutate({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || undefined,
+      message: formData.message,
+    });
   };
 
   return (
