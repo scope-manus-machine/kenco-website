@@ -18,9 +18,9 @@ export interface SendContactEmailParams {
 export async function sendContactEmail(params: SendContactEmailParams): Promise<boolean> {
   const { name, email, phone, message } = params;
   
-  const fromEmail = process.env.SES_FROM_EMAIL || "noreply@kenco.nz";
+  const fromEmail = process.env.SES_FROM_EMAIL || "web@kenco.nz";
   const toEmails = [
-    process.env.SES_TO_EMAIL || "web@kenco.nz",
+    "web@kenco.nz",
     "peter.carikas@kenco.nz"
   ];
 

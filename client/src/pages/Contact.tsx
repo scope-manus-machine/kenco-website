@@ -35,7 +35,6 @@ export default function Contact() {
     // Honeypot spam check
     if (formData.website) {
       // Bot filled the honeypot field - silently reject
-      console.log("Spam detected via honeypot");
       return;
     }
     
