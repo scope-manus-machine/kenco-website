@@ -13,13 +13,40 @@ export default function Contact() {
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    website: "" // Honeypot field
   });
+  const [submittedAt, setSubmittedAt] = useState<number | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot spam check
+    if (formData.website) {
+      // Bot filled the honeypot field - silently reject
+      console.log("Spam detected via honeypot");
+      return;
+    }
+    
+    // Rate limiting check (prevent multiple submissions within 3 seconds)
+    const now = Date.now();
+    if (submittedAt && now - submittedAt < 3000) {
+      toast.error("Please wait a moment before submitting again.");
+      return;
+    }
+    
+    // Time-based check (form must be filled for at least 2 seconds)
+    const formStartTime = sessionStorage.getItem('formStartTime');
+    if (formStartTime && now - parseInt(formStartTime) < 2000) {
+      // Likely a bot - silently reject
+      console.log("Spam detected: form filled too quickly");
+      return;
+    }
+    
+    setSubmittedAt(now);
     toast.success("Thank you for your message! We'll be in touch soon.");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setFormData({ name: "", email: "", phone: "", message: "", website: "" });
+    sessionStorage.removeItem('formStartTime');
   };
 
   return (
@@ -49,7 +76,15 @@ export default function Contact() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form 
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                    onFocus={() => {
+                      if (!sessionStorage.getItem('formStartTime')) {
+                        sessionStorage.setItem('formStartTime', Date.now().toString());
+                      }
+                    }}
+                  >
                     <div className="space-y-2">
                       <Label htmlFor="name">Name *</Label>
                       <Input
@@ -93,6 +128,19 @@ export default function Contact() {
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Tell us about your requirements..."
                         rows={6}
+                      />
+                    </div>
+                    
+                    {/* Honeypot field - hidden from users but visible to bots */}
+                    <div className="absolute opacity-0 pointer-events-none" aria-hidden="true" tabIndex={-1}>
+                      <Label htmlFor="website">Website</Label>
+                      <Input
+                        id="website"
+                        type="text"
+                        value={formData.website}
+                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                        tabIndex={-1}
+                        autoComplete="off"
                       />
                     </div>
                     
