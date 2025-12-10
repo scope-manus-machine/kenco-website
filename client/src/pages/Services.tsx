@@ -90,10 +90,8 @@ export default function Services() {
                 </CardContent>
               </Card>
               <div className="order-1 lg:order-2">
-                <div className="inline-block bg-primary/10 rounded-lg p-3 mb-4">
-                  <svg className="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
+                <div className="mb-6">
+                  <img src="/shadecare-logo.png" alt="ShadeCare" className="h-24 w-auto object-contain" />
                 </div>
                 <h2 className="text-3xl font-bold text-secondary mb-4">ShadeCare</h2>
                 <p className="text-xl text-primary font-semibold mb-4">Vertical & Roller Blinds</p>
