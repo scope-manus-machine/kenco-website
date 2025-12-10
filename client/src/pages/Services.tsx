@@ -59,9 +59,19 @@ export default function Services() {
                     <span className="text-muted-foreground">Clinically proven infection control solution</span>
                   </li>
                 </ul>
-                <Button asChild>
-                  <Link href="/contact">Learn More</Link>
-                </Button>
+                <div className="flex gap-4">
+                  <Button asChild>
+                    <Link href="/contact">Learn More</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <a href="https://endurocide.nz" target="_blank" rel="noopener noreferrer">
+                      Visit Endurocide NZ
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </Button>
+                </div>
               </div>
               <Card className="border-2 overflow-hidden">
                 <CardContent className="p-0">
