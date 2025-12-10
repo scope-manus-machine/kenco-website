@@ -36,7 +36,8 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Endurocide */}
-              <Card className="border-2 hover:border-primary transition-colors">
+              <Link href="/services">
+                <Card className="border-2 hover:border-primary transition-colors cursor-pointer">
                 <CardHeader>
                   <div className="w-full h-24 flex items-center mb-4">
                     <img src="/endurocide-logo.jpg" alt="Endurocide" className="h-20 w-auto object-contain" />
@@ -52,9 +53,11 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
+              </Link>
 
               {/* ShadeCare */}
-              <Card className="border-2 hover:border-primary transition-colors">
+              <Link href="/services">
+                <Card className="border-2 hover:border-primary transition-colors cursor-pointer">
                 <CardHeader>
                   <div className="w-full h-24 flex items-center mb-4">
                     <img src="/shadecare-logo.png" alt="ShadeCare" className="h-20 w-auto object-contain" />
@@ -70,9 +73,11 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
+              </Link>
 
               {/* Installations */}
-              <Card className="border-2 hover:border-primary transition-colors">
+              <Link href="/services">
+                <Card className="border-2 hover:border-primary transition-colors cursor-pointer">
                 <CardHeader>
                   <div className="w-full h-24 flex items-center mb-4">
                     <img src="/installations-icon.png" alt="Installations" className="h-20 w-auto object-contain" />
@@ -88,6 +93,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
+              </Link>
             </div>
           </div>
         </section>
