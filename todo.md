@@ -27,3 +27,6 @@
 - [x] Install pg (PostgreSQL driver) package for drizzle-kit
 - [x] Clear drizzle meta files and regenerate for PostgreSQL
 - [x] Convert drizzle schema from MySQL to PostgreSQL syntax
+
+## Production Issues
+- [ ] Fix "Invalid URL" JavaScript error on live website
