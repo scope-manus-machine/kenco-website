@@ -21,3 +21,4 @@
 - [ ] Fix Dockerfile to properly exclude dev dependencies from production runtime
 - [ ] Rebuild Docker image with fixed Dockerfile
 - [ ] Restart container and verify it runs successfully
+- [ ] Fix Dockerfile COPY path for client build output

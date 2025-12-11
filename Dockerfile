@@ -32,7 +32,6 @@ RUN npm install
 
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/client/dist ./client/dist
 
 # Copy necessary runtime files
 COPY drizzle ./drizzle
