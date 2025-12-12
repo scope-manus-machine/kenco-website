@@ -52,3 +52,9 @@
 - [ ] Create og-image.jpg for social sharing
 - [ ] Optimize images with alt tags
 - [x] Make service cards equal height on desktop (flexible on mobile)
+
+## Google Integrations (Current Task)
+- [x] Complete Google Search Console verification
+- [x] Set up Google Analytics 4 with Measurement ID
+- [x] Create Google My Business listing guide
+- [x] Test all Google integrations
