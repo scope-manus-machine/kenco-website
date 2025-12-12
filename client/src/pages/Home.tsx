@@ -1,17 +1,23 @@
-import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO, { addStructuredData, organizationStructuredData, localBusinessStructuredData } from "@/components/SEO";
 import { Link } from "wouter";
 
 export default function Home() {
-  // The userAuth hooks provides authentication state
-  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
+  // Add structured data for SEO
+  addStructuredData(organizationStructuredData);
+  addStructuredData(localBusinessStructuredData);
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title="Kenco Ltd - Infection Control Solutions for Healthcare Facilities"
+        description="Clinically effective infection control solutions including Endurocide antimicrobial curtains and ShadeCare window furnishings for healthcare facilities across New Zealand."
+        canonical="https://kenco.nz"
+        ogImage="https://kenco.nz/og-image.jpg"
+      />
       <Header />
       
       <main className="flex-1">
